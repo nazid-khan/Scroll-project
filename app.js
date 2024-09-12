@@ -61,8 +61,15 @@ scrollLinks.forEach(function(link){
         // calculate the height
         const navHeight = navbar.getBoundingClientRect().height;
         const containerHeight = linksContainer.getBoundingClientRect().height;
+        const fixedNav = navbar.classList.contains("fixed-nav");
 
-        let position = element.offsetTop;
+        let position = element.offsetTop - navHeight;
+        if(!fixedNav){
+            position = position - navHeight;
+        }
+        if(navHeight > 82){
+            position = position + containerHeight;
+        }
 
         window.scrollTo({
             left : 0,
